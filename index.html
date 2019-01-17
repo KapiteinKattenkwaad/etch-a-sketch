@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Etch a sketch</title>
+
+    <style>
+
+    html, body {
+        height: 100%;
+    }
+    body {
+        margin: 0;
+    }
+    #test {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        margin-top: 3em;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #test {
+    display: grid;
+    grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(5, 40px);
+    background-color: #fff;
+    border: 1px grey solid;
+}
+
+    .box{
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+    }
+
+
+
+    
+    
+    </style>
+    
+
+</head>
+<body>
+
+
+
+    <div class="wrapper">
+        <div id="container">
+                <ul id="test">
+                        
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>    
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                        <div class="box" name="boxes"></div>
+                    </ul>   
+        </div>
+       
+
+      </div>
+      
+      
+    
+
+    <script>
+
+        
+
+        var boxes = document.getElementsByName("boxes");
+        
+
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].addEventListener("mouseover", function( event ) {   
+            document.getElementsByName("boxes")[i].style.backgroundColor = "darkgrey";        
+        });
+        }
+        
+        
+        
+        /*
+
+        document.getElementById("box3").onmouseover = function() {mouseOver()};
+
+        function mouseOver() {
+            document.getElementById('box3').style.opacity = 1;
+        }
+
+    console.log(document.getElementsByName('boxes').addEventListener.onmouseleave);   */  
+
+    /*    // buttons is a node list. It looks and acts much like an array.
+        let boxes = document.getElementsByName('box');
+        boxes.addEventListener.onmouseover = function() {alert()};
+
+        function alert() {
+            console.log("yoo");
+        }
+        */
+
+    /*    // we use the .forEach method to iterate through each button
+        boxes.forEach((box) => {
+
+        // and for each one we add a 'click' listener
+        box.addEventListener('onmouseover', (e) => {
+            console.log("yo");
+        });
+        });
+        */
+
+    
+    </script>
+</body>
+</html>
