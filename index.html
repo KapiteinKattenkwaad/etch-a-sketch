@@ -29,8 +29,8 @@
     
     #wrapper {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     width: 300px;
     height: 300px;
     margin-left: 35%;
@@ -40,12 +40,10 @@
 
     .box{
     border-radius: 5px;
-    padding: 20px;
+    padding: calc(300px / 8);
     }
 
-
-
-    
+ 
     
     </style>
     
@@ -58,52 +56,88 @@
     
                 <div id="wrapper">
                         
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>    
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
-                        <div class="box" name="boxes"></div>
+                       
+
+
+
+                        
                 </div>   
-       
+                
+               
       
     
 
     <script>
 
-        
+    //make one div and attacht to the wrapper id
 
-        var boxes = document.getElementsByName("boxes");
-        
+    function createDivElement() {
 
-        for (let i = 0; i < boxes.length; i++) {
-            boxes[i].addEventListener("mouseover", function( event ) {   
-            document.getElementsByName("boxes")[i].style.backgroundColor = "darkgrey";        
-        });
+        let divElement = document.createElement("div");
+
+        divElement.className = "box";
+        document.getElementsByClassName("box").name = "boxes";
+
+        document.getElementById('wrapper').appendChild(divElement);
+
+    }
+        
+        let boxes = document.getElementsByClassName("box");
+
+        function createHoveringBackground() {
+        
+            for (let i = 0; i < boxes.length; i++) {
+                boxes[i].addEventListener("mouseover", function( event ) {   
+                document.getElementsByClassName("box")[i].style.backgroundColor = "darkgrey";        
+            });
+            }
+
         }
         
-        //Calculate the amount of boxes
+        
+        createHoveringBackground();
 
-
+        
         //Clear the grid and ask user how many squares (max. 64)
 
-        //make random color, after 10 random ones, take in 1 time black
+        function askHowManySquares() {
+            
+            //reset the amount of squares to none
+            wrapper.innerHTML = "";
+
+            for (let i = 0; i < boxes.length; i++) {
+                document.getElementsByClassName("box")[i].style.backgroundColor = "white";
+            }
+            
+            let amountSquares = prompt("How many squares do you want? (Between 2 and 64)");
+
+            //Calculate the amount of boxes
+            for (let amountOfBoxes = 0; amountOfBoxes < (amountSquares*amountSquares); amountOfBoxes++) {
+
+                //change the css grid template column and rows
+              
+                    let wrapper = document.getElementById('wrapper');
+
+                    wrapper.style.gridTemplateColumns = "repeat(" + amountSquares + ", 1fr);" 
+                    wrapper.style.gridTemplateRows = "repeat(" + amountSquares + ", 1fr);" 
+
+                
+
+                createDivElement();
+            }
+            createHoveringBackground();
+        }
 
         //change the css grid template column and rows
+        function changeColumns() {
+            let wrapper = document.getElementById('wrapper');
+
+            wrapper.style.gridTemplateColumns = "repeat(" + amountSquares + ", 1fr);" 
+            wrapper.style.gridTemplateRows = "repeat(" + amountSquares + ", 1fr);" 
+
+        }
+        //make random color, after 10 random ones, take in 1 time black
+
 
 
 
