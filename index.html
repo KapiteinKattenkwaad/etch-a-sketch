@@ -5,19 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Etch a sketch</title>
-
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet"> 
     <style>
-
-    html, body {
-        height: 100%;
-    }
+    
+    html {
+        background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);    }
+    
     body {
         margin: 0;
+        font-family: 'ZCOOL QingKe HuangYou', cursive;
+        
+    }
+
+    #container {
+        
+        align-content: center;
+        text-align: center;
     }
     #wrapper {
         padding: 0;
         margin: 0;
         margin-top: 3em;
+        margin-bottom: 3em;
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
@@ -31,16 +40,23 @@
     display: grid;
     grid-template-columns: repeat(var(--colNum), 1fr);
     grid-template-rows: repeat(var(--rowNum), 1fr);
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 500px;
     margin-left: 35%;
     background-color: #fff;
-    border: 1px grey solid;
+    border: 3px grey outset;
 }
 
     .box{
     border-radius: 5px;
-    padding: calc(300px/var(--boxPadding));
+    padding: calc(500px/var(--boxPadding));
+    }
+
+    button {
+        font-size: 1.2em;
+        background-color: darkgoldenrod;
+        border-radius: 5px;
+        cursor: pointer;
     }
 
  
@@ -51,7 +67,14 @@
 </head>
 <body>
     
-    <h1>Etch-a-sketch</h1>
+    <div id="container">
+        <h1>Etch-a-sketch</h1>
+            <p><button id="reset">RESET</button></p> 
+            <p><button id="randomColors">Random colors</button></p>
+           
+    </div>
+   
+
                 <div id="wrapper">
                     <div class="box"></div>
                     <div class="box"></div>
@@ -71,8 +94,6 @@
                     <div class="box"></div>
                 </div>   
         
-            <button id="reset">RESET</button>
-            <button id="randomColors">Random colors</button>
             
 
     <script>
@@ -107,6 +128,21 @@
         document.getElementById('wrapper').appendChild(divElement);
 
     }
+        //make random color, after 10 random ones, take in 1 time black
+        function makeBoxesRandomColor() {
+            for (let i = 0; i < boxes.length; i++) {
+                let letters = '0123456789ABCDEF';
+                let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+                boxes[i].addEventListener("mouseover", function( event ) {   
+                document.getElementsByClassName("box")[i].style.backgroundColor = color;        
+            });
+            }
+         }
+            
+         
         
         let boxes = document.getElementsByClassName("box");
 
@@ -119,7 +155,7 @@
             }
 
         }
-                
+    
         createHoveringBackground();
         
         //Clear the grid and ask user how many squares (max. 64)
@@ -156,11 +192,15 @@
             createHoveringBackground();
         }
 
+        //button reset
+        document.getElementById("reset").addEventListener("click", askHowManySquares);
+
+        //button random color
+        document.getElementById("randomColors").addEventListener("click", makeBoxesRandomColor);
+
         
-        //make random color, after 10 random ones, take in 1 time black
-        function randomColor() {
-            
-        }
+
+           
     
     </script>
 </body>
