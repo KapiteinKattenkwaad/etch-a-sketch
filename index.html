@@ -1,183 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Etch a sketch</title>
-    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet">
     <style>
-    
-    html {
-        background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);    }
-    
-    body {
-        margin: 0;
-        font-family: 'ZCOOL QingKe HuangYou', cursive;
-        
-    }
+        html {
+            background-image: linear-gradient(135deg, #72EDF2 10%, #5151E5 100%);
+        }
 
-    #container {
-        
-        align-content: center;
-        text-align: center;
-    }
-    #wrapper {
-        padding: 0;
-        margin: 0;
-        margin-top: 3em;
-        margin-bottom: 3em;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    #wrapper {
-    display: grid;
-    grid-template-columns: repeat(var(--colNum), 1fr);
-    grid-template-rows: repeat(var(--rowNum), 1fr);
-    width: 500px;
-    height: 500px;
-    margin-left: 35%;
-    background-color: #fff;
-    border: 3px grey outset;
-}
+        body {
+            margin: 0;
+            font-family: 'ZCOOL QingKe HuangYou', cursive;
 
-    .box{
-    border-radius: 5px;
-    padding: calc(500px/var(--boxPadding));
-    }
+        }
 
-    button {
-        font-size: 1.2em;
-        background-color: darkgoldenrod;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+        #container {
 
- 
-    
+            align-content: center;
+            text-align: center;
+        }
+
+        #wrapper {
+            padding: 0;
+            margin: 0;
+            margin-top: 3em;
+            margin-bottom: 3em;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #wrapper {
+            display: grid;
+            grid-template-columns: repeat(var(--colNum), 1fr);
+            grid-template-rows: repeat(var(--rowNum), 1fr);
+            width: 500px;
+            height: 500px;
+            margin-left: 35%;
+            background-color: #fff;
+            border: 3px grey outset;
+        }
+
+        .box {
+            border-radius: 5px;
+            padding: calc(500px/var(--boxPadding));
+        }
+
+        button {
+            font-size: 1.2em;
+            background-color: darkgoldenrod;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
-    
+
 
 </head>
+
 <body>
-    
+
     <div id="container">
         <h1>Etch-a-sketch</h1>
-            <p><button id="reset">RESET</button></p> 
-            <p><button id="randomColors">Random colors</button></p>
-           
-    </div>
-   
+        <p><button id="reset">RESET</button></p>
+        <p><button id="randomColors">Random colors</button></p>
 
-                <div id="wrapper">
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                </div>   
-        
-            
+    </div>
+
+
+    <div id="wrapper">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+
 
     <script>
+        //initial wrapper of 64 boxes
 
-    //initial wrapper of 64 boxes
-    
-    function initalBoxes() {
-        
-        let htmlStyles = window.getComputedStyle(document.querySelector("html"));
-        let rowNum = parseInt(htmlStyles.getPropertyValue("--rowNum"));
-        let colNum = parseInt(htmlStyles.getPropertyValue("--colNum"));
-        window.getComputedStyle(document.documentElement).getPropertyValue('--boxPadding');
+        function initalBoxes() {
 
-        document.documentElement.style.setProperty("--rowNum", 4);
-        document.documentElement.style.setProperty("--colNum", 4);
-        document.documentElement.style.setProperty('--boxPadding', 8);
+            let htmlStyles = window.getComputedStyle(document.querySelector("html"));
+            let rowNum = parseInt(htmlStyles.getPropertyValue("--rowNum"));
+            let colNum = parseInt(htmlStyles.getPropertyValue("--colNum"));
+            window.getComputedStyle(document.documentElement).getPropertyValue('--boxPadding');
 
-       
-    }
+            document.documentElement.style.setProperty("--rowNum", 4);
+            document.documentElement.style.setProperty("--colNum", 4);
+            document.documentElement.style.setProperty('--boxPadding', 8);
+        }
 
-    document.onloadend = initalBoxes();
+        document.onloadend = initalBoxes();
 
-    //make one div and attacht to the wrapper id
+        //make one div and attacht to the wrapper id
 
-    function createDivElement() {
+        function createDivElement() {
 
-        let divElement = document.createElement("div");
+            let divElement = document.createElement("div");
 
-        divElement.className = "box";
-        document.getElementsByClassName("box").name = "boxes";
+            divElement.className = "box";
+            document.getElementsByClassName("box").name = "boxes";
 
-        document.getElementById('wrapper').appendChild(divElement);
+            document.getElementById('wrapper').appendChild(divElement);
 
-    }
+        }
         //make random color, after 10 random ones, take in 1 time black
         function makeBoxesRandomColor() {
             for (let i = 0; i < boxes.length; i++) {
                 let letters = '0123456789ABCDEF';
                 let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                boxes[i].addEventListener("mouseover", function (event) {
+                    document.getElementsByClassName("box")[i].style.backgroundColor = color;
+                });
             }
-                boxes[i].addEventListener("mouseover", function( event ) {   
-                document.getElementsByClassName("box")[i].style.backgroundColor = color;        
-            });
-            }
-         }
-            
-         
-        
+        }
+
         let boxes = document.getElementsByClassName("box");
 
         function createHoveringBackground() {
-        
+
             for (let i = 0; i < boxes.length; i++) {
-                boxes[i].addEventListener("mouseover", function( event ) {   
-                document.getElementsByClassName("box")[i].style.backgroundColor = "darkgrey";        
-            });
+                boxes[i].addEventListener("mouseover", function (event) {
+                    document.getElementsByClassName("box")[i].style.backgroundColor = "darkgrey";
+                });
             }
 
         }
-    
+
         createHoveringBackground();
-        
+
         //Clear the grid and ask user how many squares (max. 64)
 
         function askHowManySquares() {
-            
+
             //reset the amount of squares to none
             wrapper.innerHTML = "";
 
             for (let i = 0; i < boxes.length; i++) {
                 document.getElementsByClassName("box")[i].style.backgroundColor = "white";
             }
-            
-          
+
+
             let amountSquares = prompt("How many squares do you want? (Between 2 and 100)");
 
 
             //Calculate the amount of boxes
-            for (let amountOfBoxes = 0; amountOfBoxes < (amountSquares*amountSquares); amountOfBoxes++) {
+            for (let amountOfBoxes = 0; amountOfBoxes < (amountSquares * amountSquares); amountOfBoxes++) {
 
                 //change the css grid template column and rows and change the .box padding
-              
+
                 let htmlStyles = window.getComputedStyle(document.querySelector("html"));
                 let rowNum = parseInt(htmlStyles.getPropertyValue("--rowNum"));
                 let colNum = parseInt(htmlStyles.getPropertyValue("--colNum"));
@@ -185,7 +180,7 @@
 
                 document.documentElement.style.setProperty("--rowNum", amountSquares);
                 document.documentElement.style.setProperty("--colNum", amountSquares);
-                document.documentElement.style.setProperty('--boxPadding', Number(amountSquares)+ Number(amountSquares));
+                document.documentElement.style.setProperty('--boxPadding', Number(amountSquares) + Number(amountSquares));
 
                 createDivElement();
             }
@@ -197,11 +192,7 @@
 
         //button random color
         document.getElementById("randomColors").addEventListener("click", makeBoxesRandomColor);
-
-        
-
-           
-    
     </script>
 </body>
+
 </html>
