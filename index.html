@@ -29,8 +29,8 @@
     
     #wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--colNum), 1fr);
+    grid-template-rows: repeat(var(--rowNum), 1fr);
     width: 300px;
     height: 300px;
     margin-left: 35%;
@@ -40,7 +40,7 @@
 
     .box{
     border-radius: 5px;
-    padding: calc(300px / 8);
+    padding: calc(300px/var(--boxPadding));
     }
 
  
@@ -50,24 +50,50 @@
 
 </head>
 <body>
-
-
-
     
+    <h1>Etch-a-sketch</h1>
                 <div id="wrapper">
-                        
-                       
-
-
-
-                        
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
                 </div>   
-                
-               
-      
-    
+        
+            <button id="reset">RESET</button>
+            <button id="randomColors">Random colors</button>
+            
 
     <script>
+
+    //initial wrapper of 64 boxes
+    
+    function initalBoxes() {
+        
+        let htmlStyles = window.getComputedStyle(document.querySelector("html"));
+        let rowNum = parseInt(htmlStyles.getPropertyValue("--rowNum"));
+        let colNum = parseInt(htmlStyles.getPropertyValue("--colNum"));
+        window.getComputedStyle(document.documentElement).getPropertyValue('--boxPadding');
+
+        document.documentElement.style.setProperty("--rowNum", 4);
+        document.documentElement.style.setProperty("--colNum", 4);
+        document.documentElement.style.setProperty('--boxPadding', 8);
+
+       
+    }
+
+    document.onloadend = initalBoxes();
 
     //make one div and attacht to the wrapper id
 
@@ -93,10 +119,8 @@
             }
 
         }
-        
-        
+                
         createHoveringBackground();
-
         
         //Clear the grid and ask user how many squares (max. 64)
 
@@ -109,69 +133,34 @@
                 document.getElementsByClassName("box")[i].style.backgroundColor = "white";
             }
             
-            let amountSquares = prompt("How many squares do you want? (Between 2 and 64)");
+          
+            let amountSquares = prompt("How many squares do you want? (Between 2 and 100)");
+
 
             //Calculate the amount of boxes
             for (let amountOfBoxes = 0; amountOfBoxes < (amountSquares*amountSquares); amountOfBoxes++) {
 
-                //change the css grid template column and rows
+                //change the css grid template column and rows and change the .box padding
               
-                    let wrapper = document.getElementById('wrapper');
+                let htmlStyles = window.getComputedStyle(document.querySelector("html"));
+                let rowNum = parseInt(htmlStyles.getPropertyValue("--rowNum"));
+                let colNum = parseInt(htmlStyles.getPropertyValue("--colNum"));
+                window.getComputedStyle(document.documentElement).getPropertyValue('--boxPadding');
 
-                    wrapper.style.gridTemplateColumns = "repeat(" + amountSquares + ", 1fr);" 
-                    wrapper.style.gridTemplateRows = "repeat(" + amountSquares + ", 1fr);" 
-
-                
+                document.documentElement.style.setProperty("--rowNum", amountSquares);
+                document.documentElement.style.setProperty("--colNum", amountSquares);
+                document.documentElement.style.setProperty('--boxPadding', Number(amountSquares)+ Number(amountSquares));
 
                 createDivElement();
             }
             createHoveringBackground();
         }
 
-        //change the css grid template column and rows
-        function changeColumns() {
-            let wrapper = document.getElementById('wrapper');
-
-            wrapper.style.gridTemplateColumns = "repeat(" + amountSquares + ", 1fr);" 
-            wrapper.style.gridTemplateRows = "repeat(" + amountSquares + ", 1fr);" 
-
-        }
-        //make random color, after 10 random ones, take in 1 time black
-
-
-
-
-
         
-        /*
-
-        document.getElementById("box3").onmouseover = function() {mouseOver()};
-
-        function mouseOver() {
-            document.getElementById('box3').style.opacity = 1;
+        //make random color, after 10 random ones, take in 1 time black
+        function randomColor() {
+            
         }
-
-    console.log(document.getElementsByName('boxes').addEventListener.onmouseleave);   */  
-
-    /*    // buttons is a node list. It looks and acts much like an array.
-        let boxes = document.getElementsByName('box');
-        boxes.addEventListener.onmouseover = function() {alert()};
-
-        function alert() {
-            console.log("yoo");
-        }
-        */
-
-    /*    // we use the .forEach method to iterate through each button
-        boxes.forEach((box) => {
-
-        // and for each one we add a 'click' listener
-        box.addEventListener('onmouseover', (e) => {
-            console.log("yo");
-        });
-        });
-        */
-
     
     </script>
 </body>
